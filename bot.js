@@ -860,9 +860,7 @@ client.on("guildMemberAdd", async member => {
 
 
 
-const Discord = require('discord.js');
-const client = new Discord.Client();
-const prefix = "$";
+var prefix = "$";
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
 });
@@ -888,7 +886,6 @@ client.on('message', message => {
   }
 });
 
-client.login('bot_token');
 
 
 

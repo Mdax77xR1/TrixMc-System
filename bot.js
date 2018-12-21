@@ -221,13 +221,11 @@ if (message.content === '$help') {
       .addField("**۩ஜ▬▬▬▬▬▬✦ (أوامر البوت (للإدارة ✦▬▬▬▬▬▬ஜ۩**","** **")
       .addField("**❖ $mutechannel**","**لتقفيل الشات**")
       .addField("**❖ $unmutechannel**","**لفتح الشات بعد تقفيله**")
-      .addField("**❖ $bc <Message> **","**لأرسال البرودكاست**")
       .addField("**❖ $clear [عددالرسائل]<Mention>**","**لمسح عدد معين من الرسائل **")
-      .addField("**❖ $suggest<Mention>**","**لإرسال اقتراح للإداره**")
       .addField("**❖ $sc**","**يرسل لك روابط السيرفرات الي موجود فيها البوت +يرسلك أي دي الاونر  **")
-      .addField("**❖ $hide <Message> **","**يخفي لك كل رومات السيرفر **")
-      .addField("**❖ $unhide <Message> **","**يظهرلك كل الرومات السيرفر **")
-      .addField("**❖ $setTime <Message> **","**يسوي لك روم و يقلك كم الساعه **")
+      .addField("**❖ $hide  **","**يخفي لك كل رومات السيرفر **")
+      .addField("**❖ $unhide  **","**يظهرلك كل الرومات السيرفر **")
+      .addField("**❖ $setTime  **","**يسوي لك روم و يقلك كم الساعه **")
       .addField("**❖ $kv <Mention> **","** لطرد شخص من روم صوتي **")
       .addField("**❖ $mvall**","**لسحب الجميع إلى الروم الصوتي **")
       .addField("**❖ $ban<Mention>**","**لبتنيد اي شخص تبيه**")
@@ -251,7 +249,7 @@ if (message.content === '$help') {
          let embed = new Discord.RichEmbed()
 
       .setThumbnail(message.author.avatarURL)    
-      .addField("**❖ $bandlist<Mention>**","**يظهرلك قائمة المبندين**")
+      .addField("**❖ $bandlist**","**يظهرلك قائمة المبندين**")
       .addField("**❖ $url**","**يسوي لك رابط خاص فيك و يرسله لك على الخاص**")
       .addField("**۩ஜ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ஜ۩**","** **")
 
@@ -856,33 +854,6 @@ client.on("guildMemberAdd", async member => {
 
 
 
-
-
-var prefix = "$";
-client.on('ready', () => {
-  console.log(`Logged in as ${client.user.tag}!`);
-});
-
-client.on('message', message => {
-  let command = message.content.split(" ")[0].slice(prefix.length);
-  let args = message.content.split(" ").slice(1);
-
-  if(!message.content.toLowerCase().startsWith(prefix)) return;
-  if(command == "suggest") {
-    if(!args.join(" ")) return message.reply(`${prefix}suggest <suggestion>`);
-    let channel = message.guild.channels.find(c => c.name == "suggestions");
-    let embed = new Discord.RichEmbed()
-    .setAuthor(message.author.username, message.author.displayAvatarURL)
-    .setTitle(`New Suggestion!`)
-    .setFooter(message.author.id)
-    .setDescription(args.join(" "));
-    channel.send(embed).then(msg => {
-      msg.react("✅").then(() => msg.react("❌"));
-      message.delete()
-      message.channel.send(`Success!, your suggestion has been recoded to <#${channel.id}>`);
-    });
-  }
-});
 
 
 

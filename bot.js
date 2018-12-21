@@ -114,6 +114,17 @@ if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('**__�
 });
 
 
+client.on("message", (message) => {
+if (message.content.startsWith(prefix + "ct")) {
+            if (!message.member.hasPermission('MANAGE_CHANNELS')) return message.reply("You Don't Have `MANAGE_CHANNELS` Premissions ");
+        let args = message.content.split(" ").slice(1);
+    message.guild.createChannel(args.join(' '), 'text');
+message.channel.sendMessage('تـم إنـشاء روم كـتابـي')
+
+}
+});
+
+
 
 
 
@@ -251,6 +262,7 @@ if (message.content === '$help') {
       .setThumbnail(message.author.avatarURL)    
       .addField("**❖ $bandlist**","**يظهرلك قائمة المبندين**")
       .addField("**❖ $url**","**يسوي لك رابط خاص فيك و يرسله لك على الخاص**")
+      .addField("**❖ $ct**","**يسوي لك روم صوتي**")
       .addField("**۩ஜ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ஜ۩**","** **")
 
     .setColor('RANDOM')

@@ -262,7 +262,7 @@ if (message.content === '$help') {
       .setThumbnail(message.author.avatarURL)    
       .addField("**❖ $bandlist**","**يظهرلك قائمة المبندين**")
       .addField("**❖ $url**","**يسوي لك رابط خاص فيك و يرسله لك على الخاص**")
-      .addField("**❖ $ct**","**يسوي لك روم صوتي**")
+      .addField("**❖ $ct<Channel.name>**","**يسوي لك روم صوتي**")
       .addField("**۩ஜ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ஜ۩**","** **")
 
     .setColor('RANDOM')

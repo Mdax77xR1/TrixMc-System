@@ -52,7 +52,7 @@ client.user.setStatus("online")
 client.on('message', message => {
 if (message.content.startsWith('السلام عليكم')){
      let ra3d = new Discord.RichEmbed()
-  .setColor("#e9ab26")
+  .setColor("RANDOM")
   .setDescription("**وعليكم السلام ورحمة الله وبركاتة**")
      
      
@@ -61,7 +61,7 @@ if (message.content.startsWith('السلام عليكم')){
 });
 
 
-
+   
 
 
 
@@ -271,15 +271,6 @@ if (message.content === '$help') {
 });
 
 
-
-
- client.on("guildMemberAdd", member => {
-  member.createDM().then(function (channel) {
-  return channel.send(`:rose:  ولكم نورت السيرفر:rose: 
-:crown:اسم العضو  ${member}:crown:  
-انت العضو رقم ${member.guild.memberCount} `) 
-}).catch(console.error)
-})
 
 
 
@@ -494,6 +485,10 @@ client.on('message', message => {
       let personalInvites = invs.filter(i => i.inviter.id === message.author.id);
       let inviteCount = personalInvites.reduce((p, v) => v.uses + p, 0);
     return message.reply(`**${inviteCount}: عدد الاشخاص الذي دعوتهم هو**`)
+  let ra3d = new Discord.RichEmbed()
+  .setColor("RANDOM")
+  message.channel.sendEmbed(ra3d);
+
 
 });
 }});
@@ -579,7 +574,7 @@ client.on('guildMemberAdd', member => {
     invites[member.guild.id] = guildInvites;
     const invite = guildInvites.find(i => ei.get(i.code).uses < i.uses);
     const inviter = client.users.get(invite.inviter.id);
-    const logChannel = member.guild.channels.find(channel => channel.name === "【welcome】");  
+    const logChannel = member.guild.channels.find(channel => channel.name === "welcome");  
     logChannel.send(`Invited by: < @${inviter.tag} >`);
   });
 });
@@ -663,13 +658,7 @@ client.on('message',async message => {
 
 
 
-client.on('message', message=> {
-    if (message.author.bot) return;
-    if (message.isMentioned(client.user))
-    {
-    message.reply("عزيزي المستخدم إن البوت المطلوب مشغول حاليآ الرجاءمعاودة المحاولة في وقت لآحق");
-    }
-});
+
 
 
 client.on('message', message => {
@@ -683,7 +672,7 @@ client.on('message', message => {
       
       let args = message.content.split(" ").slice(1);
       let x = args.join(" ")
-        if(message.content.startsWith(prefix + 'Say')) {
+        if(message.content.startsWith(prefix + 'say')) {
             message.channel.send(''+x);
                 message.delete(999)
         }

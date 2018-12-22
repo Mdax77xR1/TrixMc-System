@@ -184,7 +184,7 @@ if (message.content.startsWith('$clear')) {
 
 
 client.on("message", async message => {
-    if(message.content.startsWith(prefix + "bandlist")) {
+    if(message.content.startsWith(prefix + "banlist")) {
         if(!message.guild) return;
                 if(!message.member.hasPermission('BAN_MEMBERS')) return message.channel.send('**Sorry But You Dont Have Permission** `BAN_MEMBERS`' );
         message.guild.fetchBans()
@@ -260,7 +260,7 @@ if (message.content === '$help') {
          let embed = new Discord.RichEmbed()
 
       .setThumbnail(message.author.avatarURL)    
-      .addField("**❖ $bandlist**","**يظهرلك قائمة المبندين**")
+      .addField("**❖ $banlist**","**يظهرلك قائمة المبندين**")
       .addField("**❖ $url**","**يسوي لك رابط خاص فيك و يرسله لك على الخاص**")
       .addField("**❖ $ct<Channel.name>**","**يسوي لك روم صوتي**")
       .addField("**۩ஜ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ஜ۩**","** **")
@@ -396,7 +396,7 @@ embed: new Discord.RichEmbed()
    .setAuthor(client.user.username,client.user.avatarURL)
    .setThumbnail(client.user.avatarURL)
    .setColor('RANDOM')
-   .setTitle('``xR1`` ')
+   .setTitle('``TrixMc System .`` ')
    .addField('``My Ping``' , [`${Date.now() - message.createdTimestamp}` + 'MS'], true)
    .addField('``servers``', [client.guilds.size], true)
    .addField('``channels``' , `[ ${client.channels.size} ]` , true)
@@ -406,7 +406,7 @@ embed: new Discord.RichEmbed()
          .addField('``My Prefix``' , `[ $ ]` , true)
          .addField('``My Language``' , `[ JavaScript ]` , true)
          .addField('``Bot Version``' , `[ v0.1 ]` , true)
-         .setFooter('By | <@! - Mdax .#0518 >')
+         .setFooter('TrixMc Server')
 })
 }
 });
@@ -479,35 +479,24 @@ client.on('message', message => {
 
 
 
+client.on('message', message => {
+             if (!message.channel.guild) return;
+      if (message.author.bot) return;
 
-client.on('message',message =>{
-    var prefix = "$";
-    if(message.content.startsWith(prefix + 'topinvites')) {
-  message.guild.fetchInvites().then(i =>{
-  var invites = [];
-   
-  i.forEach(inv =>{
-    var [invs,i]=[{},null];
-     
-    if(inv.maxUses){
-        invs[inv.code] =+ inv.uses+"/"+inv.maxUses;
-    }else{
-        invs[inv.code] =+ inv.uses;
-    }
-        invites.push(`invite: ${inv.url} inviter: ${inv.inviter} \`${invs[inv.code]}\`;`);
-   
-  });
-  var embed = new Discord.RichEmbed()
-  .setColor("#000000")
-  .setDescription(`${invites.join(`\n`)+'\n\n**By:** '+message.author}`)
-  .setThumbnail("https://cdn.discordapp.com/avatars/500704774677856266/53f1ec7e75d3e1164431da77880aa195.png?size=2048")
-           message.channel.send({ embed: embed });
-   
-  });
-   
-    }
-  });
+  if (!message.content.startsWith(prefix)) return;
+  let command = message.content.split(" ")[0];
+  command = command.slice(prefix.length);
+  let args = message.content.split(" ").slice(1);
+  
+  if (command === 'invites') {
+    message.guild.fetchInvites().then(invs => {
+      let member = client.guilds.get(message.guild.id).members.get(message.author.id);
+      let personalInvites = invs.filter(i => i.inviter.id === message.author.id);
+      let inviteCount = personalInvites.reduce((p, v) => v.uses + p, 0);
+    return message.reply(`**${inviteCount}: عدد الاشخاص الذي دعوتهم هو**`)
 
+});
+}});
 
 
 
@@ -551,18 +540,6 @@ client.on('message', message => {
 
 
 
-client.on('guildMemberAdd', member => {
-  member.guild.fetchInvites().then(guildInvites => {
-    const ei = invites[member.guild.id];
-    const invite = guildInvites.find(i => ei.get(i.code).uses < i.uses);
-    const inviter = client.users.get(invite.inviter.id);
-    const stewart = member.guild.channels.find("name", "【welcome】");
-     stewart.send(`<@${member.user.id}> تمت الدعوه من <@${inviter.id}>`);
-   //  stewart.send(`<@${member.user.id}> joined using invite code ${invite.code} from <@${inviter.id}>. Invite was used ${invite.uses} times since its creation.`);
-  }); 
-});
-
-
 
 client.on('guildMemberAdd', Ammar=> {
     var embed = new Discord.RichEmbed()
@@ -577,7 +554,7 @@ client.on('guildMemberAdd', Ammar=> {
     .addField(' 👤  انت رقم',`**[ ${Ammar.guild.memberCount} ]**`,true)
     .setColor('RANDOM')
     .setFooter(Ammar.guild.name, Ammar.guild.iconURL, true)
-    var channel =Ammar.guild.channels.find('name', '【welcome】') // هنا حط اسم الروم الي تبيه يكتب فيه
+    var channel =Ammar.guild.channels.find('name', 'welcome') // هنا حط اسم الروم الي تبيه يكتب فيه
     if (!channel) return;
     channel.send({embed : embed});
     });

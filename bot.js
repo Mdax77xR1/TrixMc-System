@@ -540,7 +540,7 @@ client.on('guildMemberAdd', Ammar=> {
     var embed = new Discord.RichEmbed()
     .setAuthor(Ammar.user.username, Ammar.user.avatarURL)
     .setThumbnail(Ammar.user.avatarURL)
-    .setImage('https://cdn.discordapp.com/attachments/492862340484694027/493771573740830740/welcome1.png') //هنا حط الصوره الي تبيها
+    .setImage('') //هنا حط الصوره الي تبيها
     .setTitle('عضو جديد!')
     .setDescription('مرحبا بك بالسيرفر')
     .addField('``ايدي العضو``:',"" +  Ammar.user.id, true)
